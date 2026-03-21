@@ -1,0 +1,48 @@
+type Deal {
+    id: ID
+    issuer: Issuer
+    pricingDate: String
+    type: String
+    sector: String
+    subSector: String
+    country: String
+    region: String
+    size: Float
+    totalAllocation: Float
+    totalDemand: Float
+    investorDealAnalytics: [InvestorDealAnalytic]
+}
+
+type Issuer {
+    id: ID
+    name: String
+}
+
+type Investor {
+    id: ID
+    name: String
+    type: String
+}
+
+type InvestorDealAnalytic {
+    investor: Investor
+    allocation: Float
+    demand: Float
+    allocationRank: Int
+    demandRank: Int
+}
+
+type InvestorAnalytic {
+    investor: Investor
+    totalAllocation: Float
+    totalDemand: Float
+    averageAllocationRank: Float
+    averageDemandRank: Float
+}
+
+type Query {
+    getDeals: [Deal]
+    getDeal(id: ID!): Deal
+    getInvestors: [Investor]
+    getInvestorAnalytics: [InvestorAnalytic]
+}
