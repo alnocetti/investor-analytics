@@ -54,6 +54,7 @@ const investorTypes = [
 db.investors.deleteMany({});
 db.issuers.deleteMany({});
 db.deals.deleteMany({});
+db.investor_embeddings.deleteMany({});
 
 // ===============================
 // Investors

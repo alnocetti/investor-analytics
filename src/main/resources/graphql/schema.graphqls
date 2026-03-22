@@ -45,4 +45,11 @@ type Query {
     getInvestors: [Investor]
     getIssuers: [Issuer]
     getInvestorAnalytics: [InvestorAnalytic]
+    investorRecommendations(input: InvestorRecommendationInput!): [Investor]
+}
+
+input InvestorRecommendationInput {
+    region: String!
+    sector: String!
+    limit: Int
 }

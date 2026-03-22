@@ -15,10 +15,6 @@ public class DealService {
     @Autowired
     private DealMongoRepository dealMongoRepository;
 
-    public Deal getDealById(String dealId){
-        return dealMongoRepository.findById(dealId).orElse(null);
-    }
-
     public List<Deal> getAllDeals(){
         return dealMongoRepository.findAll();
     }
