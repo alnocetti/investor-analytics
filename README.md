@@ -12,10 +12,32 @@ A backend system for analyzing investor behavior and generating recommendations 
 - `mapper` → MapStruct (Entity → DTO)  
 
 
-Tech stack
+**Tech stack**
 
-	•	Spring Boot
-	•	Spring Data MongoDB
-	•	GraphQL
-	•	MapStruct
-	•	Lombok
+- Spring Boot
+- Spring Data MongoDB
+- GraphQL
+- MapStruct
+- Lombok
+
+
+**How to run this project locally**
+1- Create your Mongo Atlas DB
+
+2- Update application properties
+	b. Update mongo db URI.
+	c. Set app.embeddings.rebuild to true, to create embeddings.
+
+3- Run mock-data-generator.js in your Mongo instance to populate collections.
+
+4- start app
+	./mvnw spring-boot:run
+
+**Local Graphql playground**
+http://localhost:8080/graphiql?path=/graphql
+
+**Diagnose endpoint**
+http://localhost:8080/api/diagnose
+
+	
+
