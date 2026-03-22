@@ -1,5 +1,6 @@
 package com.test.investor_analytics.entity;
 
+import com.test.investor_analytics.entity.embedded.IssuerEmbedded;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;

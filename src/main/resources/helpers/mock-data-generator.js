@@ -48,6 +48,11 @@ const investorTypes = [
   "Private Equity"
 ];
 
+db.createCollection("investors");
+db.createCollection("issuers");
+db.createCollection("deals");
+db.createCollection("investor_embeddings");
+
 // ===============================
 // clean up
 // ===============================

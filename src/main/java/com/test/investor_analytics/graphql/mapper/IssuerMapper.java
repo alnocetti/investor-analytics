@@ -1,7 +1,7 @@
 package com.test.investor_analytics.graphql.mapper;
 
 import com.test.investor_analytics.entity.Issuer;
-import com.test.investor_analytics.entity.IssuerEmbedded;
+import com.test.investor_analytics.entity.embedded.IssuerEmbedded;
 import com.test.investor_analytics.graphql.dto.IssuerDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
