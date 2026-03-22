@@ -6,6 +6,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InvestorEmbeddingService {
 
-    private final InvestorEmbeddingRepository repository;
+    @Autowired
+    private InvestorEmbeddingRepository repository;
 
     @Value("${app.embeddings.rebuild:false}")
-    private final boolean rebuild;
+    private boolean rebuild;
 
     @PostConstruct
     public void init() {
