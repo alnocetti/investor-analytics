@@ -3,13 +3,13 @@
 A backend system for analyzing investor behavior and generating recommendations based on historical deal data, using Spring Boot, MongoDB, and vector similarity techniques.
 
 
-com.test.investor_analytics
-│
-├── entity                → MongoDB models
-├── repository            → Data access layer (Mongo + custom)
-├── service               → Business logic
-├── graphql / dto         → API layer
-├── mapper                → MapStruct (Entity → DTO)
+**Project structure**
+
+- `entity` → MongoDB models  
+- `repository` → Data access layer (Mongo + custom)  
+- `service` → Business logic  
+- `graphql/dto` → API layer  
+- `mapper` → MapStruct (Entity → DTO)  
 
 
 Tech stack
