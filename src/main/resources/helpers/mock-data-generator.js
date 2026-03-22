@@ -184,9 +184,10 @@ if (batch.length) db.deals.insertMany(batch);
 // ===============================
 // Indexes (🔥 actualizados)
 // ===============================
-db.deals.createIndex({ pricingDate: 1 });
-db.deals.createIndex({ "issuer.id": 1 });
-db.deals.createIndex({ "investorDealAnalytics.investor.id": 1 });
+db.deals.createIndex({ "issuer._id": 1 });
+db.deals.createIndex({ "investorDealAnalytics.investor._id": 1 })
+db.deals.createIndex({ pricingDate: 1 })
+db.deals.createIndex({ sector: 1, region: 1 })
 
 // ===============================
 // Result

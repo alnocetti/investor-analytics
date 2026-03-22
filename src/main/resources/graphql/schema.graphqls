@@ -42,7 +42,7 @@ type InvestorAnalytic {
 
 type Query {
     getDeals: [Deal]
-    getDeal(id: ID!): Deal
     getInvestors: [Investor]
+    getIssuers: [Issuer]
     getInvestorAnalytics: [InvestorAnalytic]
 }

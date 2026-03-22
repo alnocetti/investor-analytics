@@ -2,13 +2,16 @@ package com.test.investor_analytics.graphql.resolver;
 
 import com.test.investor_analytics.graphql.dto.DealDTO;
 import com.test.investor_analytics.graphql.dto.InvestorAnalyticDTO;
-import com.test.investor_analytics.graphql.mapper.DealMapper;
 import com.test.investor_analytics.graphql.dto.InvestorDTO;
+import com.test.investor_analytics.graphql.dto.IssuerDTO;
+import com.test.investor_analytics.graphql.mapper.DealMapper;
 import com.test.investor_analytics.graphql.mapper.InvestorAnalyticMapper;
 import com.test.investor_analytics.graphql.mapper.InvestorMapper;
+import com.test.investor_analytics.graphql.mapper.IssuerMapper;
 import com.test.investor_analytics.service.DealService;
 import com.test.investor_analytics.service.InvestorAnalyticService;
 import com.test.investor_analytics.service.InvestorService;
+import com.test.investor_analytics.service.IssuerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -36,6 +39,12 @@ public class QueryResolver {
     @Autowired
     private InvestorAnalyticMapper investorAnalyticMapper;
 
+    @Autowired
+    private IssuerService issuerService;
+
+    @Autowired
+    private IssuerMapper issuerMapper;
+
     @QueryMapping
     public DealDTO getDeal(String id) {
         return dealMapper.toDto(dealService.getDealById(id));
@@ -54,5 +63,10 @@ public class QueryResolver {
     @QueryMapping
     public List<InvestorAnalyticDTO> getInvestorAnalytics() {
         return investorAnalyticService.getInvestorAnalytics().stream().map(investorAnalyticMapper::toDto).toList();
+    }
+
+    @QueryMapping
+    public List<IssuerDTO> getIssuers() {
+        return issuerService.getAllIssuers().stream().map(issuerMapper::toDto).toList();
     }
 }
