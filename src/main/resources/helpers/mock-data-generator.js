@@ -188,7 +188,7 @@ for (let i = 0; i < 3000; i++) {
 if (batch.length) db.deals.insertMany(batch);
 
 // ===============================
-// Indexes (🔥 actualizados)
+// Indexes
 // ===============================
 db.deals.createIndex({ "issuer._id": 1 });
 db.deals.createIndex({ "investorDealAnalytics.investor._id": 1 })

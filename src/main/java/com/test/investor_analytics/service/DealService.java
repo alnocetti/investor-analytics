@@ -1,12 +1,13 @@
 package com.test.investor_analytics.service;
 
 import com.test.investor_analytics.entity.Deal;
+import com.test.investor_analytics.entity.PageData;
+import com.test.investor_analytics.graphql.dto.input.DealFilterInput;
+import com.test.investor_analytics.graphql.dto.input.PaginationInput;
 import com.test.investor_analytics.repository.DealMongoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -15,7 +16,7 @@ public class DealService {
     @Autowired
     private DealMongoRepository dealMongoRepository;
 
-    public List<Deal> getAllDeals(){
-        return dealMongoRepository.findAll();
+    public PageData<Deal> getAllDeals(PaginationInput pagination, DealFilterInput filter) {
+        return dealMongoRepository.find(filter, pagination);
     }
 }

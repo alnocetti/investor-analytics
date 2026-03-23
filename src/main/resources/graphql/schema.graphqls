@@ -13,15 +13,30 @@ type Deal {
     investorDealAnalytics: [InvestorDealAnalytic]
 }
 
+type DealPage {
+    content: [Deal]
+    paginationInfo: PaginationInfo
+}
+
 type Issuer {
     id: ID
     name: String
+}
+
+type IssuerPage {
+    content: [Issuer]
+    paginationInfo: PaginationInfo
 }
 
 type Investor {
     id: ID
     name: String
     type: String
+}
+
+type InvestorPage {
+    content: [Investor]
+    paginationInfo: PaginationInfo
 }
 
 type InvestorDealAnalytic {
@@ -32,6 +47,11 @@ type InvestorDealAnalytic {
     demandRank: Int
 }
 
+type InvestorDealAnalyticPage {
+    content: [InvestorDealAnalytic]
+    paginationInfo: PaginationInfo
+}
+
 type InvestorAnalytic {
     investor: Investor
     totalAllocation: Float
@@ -40,16 +60,65 @@ type InvestorAnalytic {
     averageDemandRank: Float
 }
 
-type Query {
-    getDeals: [Deal]
-    getInvestors: [Investor]
-    getIssuers: [Issuer]
-    getInvestorAnalytics: [InvestorAnalytic]
-    investorRecommendations(input: InvestorRecommendationInput!): [Investor]
+type InvestorAnalyticPage {
+    content: [InvestorAnalytic]
+    paginationInfo: PaginationInfo
 }
 
-input InvestorRecommendationInput {
+type Query {
+    getDeals(input: GetDealsInput): DealPage
+    getInvestors(input: GetInvestorsInput): InvestorPage
+    getIssuers(input: GetIssuersInput): IssuerPage
+    getInvestorAnalytics(input: GetInvestorAnalyticsInput): InvestorAnalyticPage
+    investorRecommendations(input: InvestorRecommendationsInput!): [Investor]
+}
+
+input DealFilterInput {
+    region: String
+    sector: String
+    subSector: String
+    country: String
+    type: String
+    pricingDateRange: DateRangeInput
+}
+
+input DateRangeInput {
+    startDate: String
+    endDate: String
+}
+
+type PaginationInfo {
+    totalElements: Int
+    totalPages: Int
+    page: Int
+    size: Int
+}
+
+input PaginationInput {
+    page: Int
+    size: Int
+}
+
+input GetInvestorsInput {
+    pagination: PaginationInput
+}
+
+input GetDealsInput {
+    pagination: PaginationInput
+    filter: DealFilterInput
+}
+
+input GetIssuersInput {
+    pagination: PaginationInput
+}
+
+input GetInvestorAnalyticsInput {
+    pagination: PaginationInput
+}
+
+input InvestorRecommendationsInput {
     region: String!
     sector: String!
     limit: Int
 }
+
