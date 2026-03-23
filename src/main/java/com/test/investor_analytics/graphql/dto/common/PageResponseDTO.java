@@ -1,4 +1,4 @@
-package com.test.investor_analytics.graphql.dto;
+package com.test.investor_analytics.graphql.dto.common;
 
 import lombok.Builder;
 import lombok.Data;

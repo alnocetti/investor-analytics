@@ -2,6 +2,7 @@ package com.test.investor_analytics.graphql.resolver;
 
 import com.test.investor_analytics.entity.*;
 import com.test.investor_analytics.graphql.dto.*;
+import com.test.investor_analytics.graphql.dto.common.PageResponseDTO;
 import com.test.investor_analytics.graphql.dto.input.*;
 import com.test.investor_analytics.graphql.mapper.DealMapper;
 import com.test.investor_analytics.graphql.mapper.InvestorAnalyticMapper;

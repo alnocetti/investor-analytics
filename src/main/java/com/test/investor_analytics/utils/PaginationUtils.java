@@ -1,6 +1,6 @@
 package com.test.investor_analytics.utils;
 
-import com.test.investor_analytics.graphql.dto.PaginationInfoDTO;
+import com.test.investor_analytics.graphql.dto.common.PaginationInfoDTO;
 import com.test.investor_analytics.graphql.dto.input.PaginationInput;
 
 import java.util.Optional;
