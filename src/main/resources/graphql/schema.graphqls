@@ -80,6 +80,7 @@ input DealFilterInput {
     country: String
     type: String
     pricingDateRange: DateRangeInput
+    investorId: ID
 }
 
 input DateRangeInput {

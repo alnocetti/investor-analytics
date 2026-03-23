@@ -10,4 +10,5 @@ public class DealFilterInput {
     private String country;
     private String type;
     private DateRangeInput pricingDateRange;
+    private String investorId;
 }

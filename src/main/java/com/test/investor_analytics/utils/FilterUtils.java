@@ -2,6 +2,7 @@ package com.test.investor_analytics.utils;
 
 import com.test.investor_analytics.graphql.dto.input.DateRangeInput;
 import com.test.investor_analytics.graphql.dto.input.DealFilterInput;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.query.Criteria;
 
 import java.time.LocalDate;
@@ -35,6 +36,14 @@ public class FilterUtils {
 
         if (filter.getType() != null) {
             criteriaList.add(Criteria.where("type").is(filter.getType()));
+        }
+
+        if (filter.getInvestorId() != null) {
+            criteriaList.add(
+                Criteria.where("investorDealAnalytics")
+                        .elemMatch(Criteria.where("investor._id").
+                                is(new ObjectId(filter.getInvestorId())))
+            );
         }
 
         if (filter.getPricingDateRange() != null) {
