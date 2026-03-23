@@ -1,4 +1,4 @@
-package com.test.investor_analytics.repository;
+package com.test.investor_analytics.repository.deal;
 
 import com.test.investor_analytics.entity.Deal;
 import com.test.investor_analytics.entity.PageData;

@@ -4,7 +4,7 @@ import com.test.investor_analytics.entity.Deal;
 import com.test.investor_analytics.entity.PageData;
 import com.test.investor_analytics.graphql.dto.input.DealFilterInput;
 import com.test.investor_analytics.graphql.dto.input.PaginationInput;
-import com.test.investor_analytics.repository.DealMongoRepository;
+import com.test.investor_analytics.repository.deal.DealMongoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

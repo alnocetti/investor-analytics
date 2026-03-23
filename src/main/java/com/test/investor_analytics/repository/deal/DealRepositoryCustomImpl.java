@@ -1,9 +1,10 @@
-package com.test.investor_analytics.repository;
+package com.test.investor_analytics.repository.deal;
 
 import com.test.investor_analytics.entity.Deal;
 import com.test.investor_analytics.entity.PageData;
 import com.test.investor_analytics.graphql.dto.input.DealFilterInput;
 import com.test.investor_analytics.graphql.dto.input.PaginationInput;
+import com.test.investor_analytics.repository.BaseRepository;
 import com.test.investor_analytics.utils.FilterUtils;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

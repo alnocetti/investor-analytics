@@ -1,7 +1,7 @@
 package com.test.investor_analytics.service;
 
 import com.test.investor_analytics.entity.InvestorEmbedding;
-import com.test.investor_analytics.repository.InvestorEmbeddingRepository;
+import com.test.investor_analytics.repository.investor.embeddings.InvestorEmbeddingRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

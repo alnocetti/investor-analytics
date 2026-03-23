@@ -1,4 +1,4 @@
-package com.test.investor_analytics.repository;
+package com.test.investor_analytics.repository.investor.embeddings;
 
 import com.test.investor_analytics.entity.InvestorEmbedding;
 import org.bson.Document;

@@ -1,4 +1,4 @@
-package com.test.investor_analytics.repository;
+package com.test.investor_analytics.repository.issuer;
 
 import com.test.investor_analytics.entity.Issuer;
 import org.springframework.data.mongodb.repository.MongoRepository;
