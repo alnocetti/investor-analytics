@@ -9,11 +9,62 @@ A backend system for analyzing investor behavior and generating recommendations 
 - `repository` → Data access layer (Mongo + custom)  
 - `service` → Business logic  
 - `graphql/dto` → API layer  
-- `mapper` → MapStruct (Entity → DTO)  
+- `mapper` → MapStruct (Entity → DTO)
+
+**Main architecture**
+```text
+controller / graphql
+        ↓
+service
+        ↓
+repository (custom)
+        ↓
+MongoTemplate + Aggregations
+```
+
+**Main components**
+- BaseRepository
+	- Generic queries and aggregations handling
+ 	- Reusable pagination
+- InvestorAnalyticCustomRepository
+	- Complex query building
+	- Mongo pipelines usage
+- InvestorAnalyticsAggregationBuilder
+    - Pipeline logic encapsulated
+	- Dynamic filtering
+
+**Data model**
+Main entity - Deal, contains information about each deal and analytics per investor on that deal
+```text
+{
+  "_id": "...",
+  "issuer": {...},
+  "investorDealAnalytics": [
+    {
+      "investor": {...},
+      "allocation": 100,
+      "demand": 200,
+      "allocationRank": 1,
+      "demandRank": 2
+    }
+  ]
+}
+```
+
+**Analytic response**
+Investor Analytic aggregation
+```text
+{
+  "investor": {...},
+  "totalAllocation": 1000,
+  "totalDemand": 2000,
+  "averageAllocationRank": 1.5,
+  "averageDemandRank": 2.1
+}
+```
 
 
 **Tech stack**
-
 - Spring Boot
 - Spring Data MongoDB
 - GraphQL
