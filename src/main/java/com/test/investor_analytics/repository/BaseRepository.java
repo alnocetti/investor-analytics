@@ -3,6 +3,7 @@ package com.test.investor_analytics.repository;
 import com.test.investor_analytics.entity.Deal;
 import com.test.investor_analytics.entity.InvestorAnalytic;
 import com.test.investor_analytics.entity.PageData;
+import com.test.investor_analytics.graphql.dto.common.SortInput;
 import com.test.investor_analytics.graphql.dto.input.PaginationInput;
 import org.bson.Document;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,6 +14,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
+
+import static com.test.investor_analytics.utils.SortUtils.buildSort;
 
 public abstract class BaseRepository<T> {
 
@@ -32,19 +35,19 @@ public abstract class BaseRepository<T> {
         return mongoTemplate.getCollectionName(entityClass);
     }
 
-    protected <T> PageData<T> find(Class<T> clazz, Criteria criteria, PaginationInput pagination) {
+    protected <T> PageData<T> find(Class<T> clazz, Criteria criteria, PaginationInput pagination, SortInput sort) {
 
         int page = pagination.resolvePage();
         int size = pagination.resolveSize();
 
-        Query baseQuery = buildQuery(criteria);
+        Query baseQuery = buildQuery(criteria, sort);
 
         List<T> data = mongoTemplate.find(
                 baseQuery.skip(pagination.resolveSkip()).limit(size),
                 clazz
         );
 
-        long total = mongoTemplate.count(buildQuery(criteria), clazz);
+        long total = mongoTemplate.count(buildQuery(criteria, sort), clazz);
 
         return new PageData<>(data, total, page, size);
     }
@@ -87,9 +90,17 @@ public abstract class BaseRepository<T> {
         return new PageData<>(data, total, page, size);
     }
 
-    private Query buildQuery(Criteria criteria) {
-        return (criteria == null || criteria.getCriteriaObject().isEmpty())
-                ? new Query()
-                : new Query(criteria);
+    private Query buildQuery(Criteria criteria, SortInput sort) {
+
+        Query query = new Query();
+        if (criteria != null) {
+            query.addCriteria(criteria);
+        }
+
+        if (sort != null && sort.getField() != null && !sort.getField().isEmpty()) {
+            query.with(buildSort(sort));
+        }
+
+        return query;
     }
 }

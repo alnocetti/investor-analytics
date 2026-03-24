@@ -16,6 +16,6 @@ public class IssuerRepositoryCustomImpl extends BaseRepository<Issuer> implement
 
     @Override
     public PageData<Issuer> find(PaginationInput paginationInput) {
-        return find(Issuer.class, null, paginationInput);
+        return find(Issuer.class, null, paginationInput, null);
     }
 }

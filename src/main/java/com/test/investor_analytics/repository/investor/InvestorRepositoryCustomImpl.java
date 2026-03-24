@@ -16,7 +16,7 @@ public class InvestorRepositoryCustomImpl extends BaseRepository<Investor> imple
 
     @Override
     public PageData<Investor> find(PaginationInput paginationInput) {
-        return find(Investor.class, null, paginationInput);
+        return find(Investor.class, null, paginationInput, null);
     }
 }
 

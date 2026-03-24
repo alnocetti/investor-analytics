@@ -1,21 +1,26 @@
 package com.test.investor_analytics.repository.deal;
 
+import com.test.investor_analytics.graphql.dto.common.SortInput;
 import com.test.investor_analytics.graphql.dto.input.PaginationInput;
 import com.test.investor_analytics.repository.AggregationPipeline;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 
 import java.util.List;
 
+import static com.test.investor_analytics.graphql.dto.common.SortDirection.ASC;
+
 public class DealAggregationBuilder {
 
     public static List<AggregationOperation> build(
             Criteria criteria,
             String investorId,
-            PaginationInput pagination
+            PaginationInput pagination,
+            SortInput sort
     ) {
 
         AggregationPipeline pipeline = AggregationPipeline.builder().build();
@@ -61,7 +66,24 @@ public class DealAggregationBuilder {
                 );
         }
 
-        // sort by deal date desc and apply pagination
+        if (sort != null) {
+                pipeline.add(
+                        Aggregation.sort(
+                                sort.getDirection() == ASC
+                                        ? Sort.by(sort.getField()).ascending()
+                                        : Sort.by(sort.getField()).descending()
+                        )
+                );
+        } else {
+                // default sort by pricingDate desc
+                pipeline.add(
+                        Aggregation.sort(Sort.by("pricingDate", "_id").descending())
+
+                );
+        }
+
+
+        // apply pagination
         pipeline.add(
                 Aggregation.facet(
                                 Aggregation.skip(pagination.resolveSkip()),

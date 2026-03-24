@@ -7,6 +7,7 @@ import com.test.investor_analytics.graphql.dto.InvestorDTO;
 import com.test.investor_analytics.graphql.dto.IssuerDTO;
 import com.test.investor_analytics.graphql.dto.common.PageResponseDTO;
 import com.test.investor_analytics.graphql.dto.common.PaginationInfoDTO;
+import com.test.investor_analytics.graphql.dto.common.SortInput;
 import com.test.investor_analytics.graphql.dto.input.*;
 import com.test.investor_analytics.graphql.mapper.DealMapper;
 import com.test.investor_analytics.graphql.mapper.InvestorAnalyticMapper;
@@ -56,8 +57,9 @@ public class QueryResolver {
 
         PaginationInput pagination = input != null ? input.getPagination() : null;
         DealFilterInput filter = input != null ? input.getFilter() : null;
+        SortInput sort = input != null ? input.getSort() : null;
 
-        PageData<Deal> result = dealService.getAllDeals(pagination, filter);
+        PageData<Deal> result = dealService.getAllDeals(pagination, filter, sort);
 
         List<DealDTO> content = result.getContent().stream()
                 .map(dealMapper::toDto)
@@ -107,8 +109,9 @@ public class QueryResolver {
 
         PaginationInput pagination = input != null ? input.getPagination() : null;
         DealFilterInput filter = input != null ? input.getFilter() : null;
+        SortInput sort = input != null ? input.getSort() : null;
 
-        PageData<InvestorAnalytic> result = investorAnalyticService.getInvestorAnalytics(filter, pagination);
+        PageData<InvestorAnalytic> result = investorAnalyticService.getInvestorAnalytics(filter, pagination, sort);
 
         List<InvestorAnalyticDTO> content = result.getContent().stream()
                 .map(investorAnalyticMapper::toDto)

@@ -84,6 +84,16 @@ input DealFilterInput {
     investorId: ID
 }
 
+input DealSortInput {
+    field: String!
+    direction: SortDirection!
+}
+
+enum SortDirection {
+    ASC
+    DESC
+}
+
 scalar Date
 
 input DateRangeInput {
@@ -110,6 +120,7 @@ input GetInvestorsInput {
 input GetDealsInput {
     pagination: PaginationInput
     filter: DealFilterInput
+    sort: DealSortInput
 }
 
 input GetIssuersInput {
@@ -119,6 +130,7 @@ input GetIssuersInput {
 input GetInvestorAnalyticsInput {
     pagination: PaginationInput
     filter: DealFilterInput
+    sort: DealSortInput
 }
 
 input InvestorRecommendationsInput {
