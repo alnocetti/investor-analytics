@@ -20,6 +20,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class QueryResolver {
@@ -55,7 +56,10 @@ public class QueryResolver {
     public PageResponseDTO<DealDTO> getDeals(
             @Argument GetDealsInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
+        PaginationInput pagination = Optional.ofNullable(input)
+                .map(GetDealsInput::getPagination)
+                .orElse(new PaginationInput());
+
         DealFilterInput filter = input != null ? input.getFilter() : null;
         SortInput sort = input != null ? input.getSort() : null;
 
@@ -82,7 +86,9 @@ public class QueryResolver {
     public PageResponseDTO<InvestorDTO> getInvestors(
             @Argument GetInvestorsInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
+        PaginationInput pagination = Optional.ofNullable(input)
+                .map(GetInvestorsInput::getPagination)
+                .orElse(new PaginationInput());
 
         PageData<Investor> result = investorService.getAllInvestors(pagination);
 
@@ -107,7 +113,10 @@ public class QueryResolver {
     public PageResponseDTO<InvestorAnalyticDTO> getInvestorAnalytics(
             @Argument GetInvestorAnalyticsInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
+        PaginationInput pagination = Optional.ofNullable(input)
+                .map(GetInvestorAnalyticsInput::getPagination)
+                .orElse(new PaginationInput());
+
         DealFilterInput filter = input != null ? input.getFilter() : null;
         SortInput sort = input != null ? input.getSort() : null;
 
@@ -134,7 +143,9 @@ public class QueryResolver {
     public PageResponseDTO<IssuerDTO> getIssuers(
             @Argument GetIssuersInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
+        PaginationInput pagination = Optional.ofNullable(input)
+                .map(GetIssuersInput::getPagination)
+                .orElse(new PaginationInput());
 
         PageData<Issuer> result = issuerService.getAllIssuers(pagination);
 
