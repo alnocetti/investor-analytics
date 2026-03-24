@@ -1,0 +1,37 @@
+query getAllDeals($input: GetDealsInput) {
+    getDeals(input: $input) {
+        content {
+            id
+            pricingDate
+            type
+            sector
+            subSector
+            country
+            region
+            size
+            totalDemand
+            totalAllocation
+            issuer {
+                id
+                name
+            }
+            investorDealAnalytics {
+                investor {
+                    id
+                    name
+                    type
+                }
+                allocation
+                demand
+                allocationRank
+                demandRank
+            }
+        }
+        paginationInfo {
+            totalElements
+            totalPages
+            page
+            size
+        }
+    }
+}

@@ -75,6 +75,7 @@ type Query {
 }
 
 input DealFilterInput {
+    dealId: ID
     region: String
     sector: String
     subSector: String

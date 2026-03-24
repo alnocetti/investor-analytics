@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class DealFilterInput {
+    private String dealId;
     private String sector;
     private String subSector;
     private String region;

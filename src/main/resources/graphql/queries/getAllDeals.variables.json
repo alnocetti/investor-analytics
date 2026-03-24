@@ -1,0 +1,22 @@
+{
+  "input": {
+    "pagination": {
+      "page": 0,
+      "size": 100
+    },
+    "sort": {
+      "field": "country",
+      "direction": "ASC"
+    },
+    "filter": {
+      "dealId": "69c00f6471c171461fffee84",
+      "sector": "Healthcare",
+      "region": "Europe",
+      "investorId": "69c00f6371c171461fffec5c",
+      "pricingDateRange": {
+        "startDate": "2023-01-31",
+        "endDate": "2023-03-01"
+      }
+    }
+  }
+}

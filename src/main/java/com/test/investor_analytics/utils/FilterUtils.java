@@ -17,6 +17,10 @@ public class FilterUtils {
 
         List<Criteria> criteriaList = new ArrayList<>();
 
+        if (filter.getDealId() != null) {
+            criteriaList.add(Criteria.where("_id").is(filter.getDealId()));
+        }
+
         if (filter.getRegion() != null) {
             criteriaList.add(Criteria.where("region").is(filter.getRegion()));
         }

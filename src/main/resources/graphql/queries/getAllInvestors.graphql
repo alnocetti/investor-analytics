@@ -1,0 +1,15 @@
+query getAllInvestors($input: GetInvestorsInput) {
+    getInvestors(input: $input) {
+        content {
+            id,
+            name,
+            type
+        }
+        paginationInfo {
+            totalElements,
+            totalPages,
+            page,
+            size
+        }
+    }
+}

@@ -1,0 +1,22 @@
+query getInvestorAnalytics($input: GetInvestorAnalyticsInput) {
+    getInvestorAnalytics(input: $input) {
+        content {
+            investor {
+                id
+                name
+                type
+            }
+            participation
+            totalAllocation
+            totalDemand
+            averageAllocationRank
+            averageDemandRank
+        }
+        paginationInfo {
+            totalElements,
+            totalPages,
+            page,
+            size
+        }
+    }
+}

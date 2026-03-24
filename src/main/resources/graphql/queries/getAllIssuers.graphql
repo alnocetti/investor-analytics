@@ -1,0 +1,14 @@
+query getAllIssuers($input: GetIssuersInput) {
+    getIssuers(input: $input) {
+        content {
+            id
+            name
+        }
+        paginationInfo {
+            totalElements,
+            totalPages,
+            page,
+            size
+        }
+    }
+}
