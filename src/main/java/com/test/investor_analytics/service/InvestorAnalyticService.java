@@ -2,6 +2,7 @@ package com.test.investor_analytics.service;
 
 import com.test.investor_analytics.entity.InvestorAnalytic;
 import com.test.investor_analytics.entity.PageData;
+import com.test.investor_analytics.graphql.dto.input.DealFilterInput;
 import com.test.investor_analytics.graphql.dto.input.PaginationInput;
 import com.test.investor_analytics.repository.investor.analytics.InvestorAnalyticMongoRepository;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ public class InvestorAnalyticService {
     @Autowired
     private InvestorAnalyticMongoRepository investorAnalyticMongoRepository;
 
-    public PageData<InvestorAnalytic> getInvestorAnalytics(PaginationInput pagination) {
-        return investorAnalyticMongoRepository.getInvestorAnalytics(pagination);
+    public PageData<InvestorAnalytic> getInvestorAnalytics(DealFilterInput filter, PaginationInput pagination) {
+        return investorAnalyticMongoRepository.getInvestorAnalytics(filter, pagination);
     }
 }

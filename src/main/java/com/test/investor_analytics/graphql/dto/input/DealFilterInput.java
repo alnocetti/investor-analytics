@@ -1,8 +1,12 @@
 package com.test.investor_analytics.graphql.dto.input;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class DealFilterInput {
     private String sector;
     private String subSector;
@@ -11,4 +15,8 @@ public class DealFilterInput {
     private String type;
     private DateRangeInput pricingDateRange;
     private String investorId;
+
+    public boolean hasInvestorId() {
+        return investorId != null;
+    }
 }

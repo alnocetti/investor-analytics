@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class GetInvestorAnalyticsInput {
     private PaginationInput pagination;
+    private DealFilterInput filter;
 }

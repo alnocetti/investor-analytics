@@ -7,19 +7,32 @@ import com.test.investor_analytics.graphql.dto.input.PaginationInput;
 import com.test.investor_analytics.repository.BaseRepository;
 import com.test.investor_analytics.utils.FilterUtils;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public class DealRepositoryCustomImpl extends BaseRepository implements DealRepositoryCustom {
+public class DealRepositoryCustomImpl extends BaseRepository<Deal> implements DealRepositoryCustom {
 
     public DealRepositoryCustomImpl(MongoTemplate mongoTemplate) {
-        super(mongoTemplate);
+        super(mongoTemplate, Deal.class);
     }
 
     @Override
-    public PageData<Deal> find(DealFilterInput filter, PaginationInput paginationInput) {
+    public PageData<Deal> find(DealFilterInput filter, PaginationInput pagination) {
+
         Criteria criteria = FilterUtils.buildDealFilters(filter);
-        return find(Deal.class, criteria, paginationInput);
+
+        List<AggregationOperation> operations = DealAggregationBuilder.build(criteria,
+                        filter != null && filter.hasInvestorId() ? filter.getInvestorId() : null,
+                        pagination);
+
+
+        return executeAggregation(
+                operations,
+                pagination
+        );
     }
 }

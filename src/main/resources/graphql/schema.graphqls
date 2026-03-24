@@ -115,6 +115,7 @@ input GetIssuersInput {
 
 input GetInvestorAnalyticsInput {
     pagination: PaginationInput
+    filter: DealFilterInput
 }
 
 input InvestorRecommendationsInput {

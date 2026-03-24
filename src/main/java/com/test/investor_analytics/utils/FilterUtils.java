@@ -38,7 +38,7 @@ public class FilterUtils {
             criteriaList.add(Criteria.where("type").is(filter.getType()));
         }
 
-        if (filter.getInvestorId() != null) {
+        if (filter.hasInvestorId()) {
             criteriaList.add(
                 Criteria.where("investorDealAnalytics")
                         .elemMatch(Criteria.where("investor._id").

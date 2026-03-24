@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class IssuerRepositoryCustomImpl extends BaseRepository implements IssuerRepositoryCustom {
+public class IssuerRepositoryCustomImpl extends BaseRepository<Issuer> implements IssuerRepositoryCustom {
 
     public IssuerRepositoryCustomImpl(MongoTemplate mongoTemplate) {
-        super(mongoTemplate);
+        super(mongoTemplate, Issuer.class);
     }
 
     @Override

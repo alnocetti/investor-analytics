@@ -1,23 +1,24 @@
 package com.test.investor_analytics.graphql.resolver;
 
 import com.test.investor_analytics.entity.*;
-import com.test.investor_analytics.graphql.dto.*;
+import com.test.investor_analytics.graphql.dto.DealDTO;
+import com.test.investor_analytics.graphql.dto.InvestorAnalyticDTO;
+import com.test.investor_analytics.graphql.dto.InvestorDTO;
+import com.test.investor_analytics.graphql.dto.IssuerDTO;
 import com.test.investor_analytics.graphql.dto.common.PageResponseDTO;
+import com.test.investor_analytics.graphql.dto.common.PaginationInfoDTO;
 import com.test.investor_analytics.graphql.dto.input.*;
 import com.test.investor_analytics.graphql.mapper.DealMapper;
 import com.test.investor_analytics.graphql.mapper.InvestorAnalyticMapper;
 import com.test.investor_analytics.graphql.mapper.InvestorMapper;
 import com.test.investor_analytics.graphql.mapper.IssuerMapper;
 import com.test.investor_analytics.service.*;
-import com.test.investor_analytics.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-
-import static com.test.investor_analytics.utils.PaginationUtils.buildPageInfo;
 
 @Controller
 public class QueryResolver {
@@ -62,9 +63,16 @@ public class QueryResolver {
                 .map(dealMapper::toDto)
                 .toList();
 
+        PaginationInfoDTO paginationInfo = PaginationInfoDTO.builder()
+                .size(result.getPageSize())
+                .page(result.getPage())
+                .totalElements(result.getTotal())
+                .totalPages(result.getTotalPages())
+                .build();
+
         return PageResponseDTO.<DealDTO>builder()
                 .content(content)
-                .paginationInfo(buildPageInfo(result.getTotal(), result.getPage(), result.getPageSize()))
+                .paginationInfo(paginationInfo)
                 .build();
     }
 
@@ -72,19 +80,24 @@ public class QueryResolver {
     public PageResponseDTO<InvestorDTO> getInvestors(
             @Argument GetInvestorsInput input) {
 
-        PaginationInput pagination = PaginationUtils.resolvePagination(
-                input,
-                i -> ((GetInvestorsInput) i).getPagination()
-        );
+        PaginationInput pagination = input != null ? input.getPagination() : null;
+
         PageData<Investor> result = investorService.getAllInvestors(pagination);
 
         List<InvestorDTO> content = result.getContent().stream()
                 .map(investorMapper::toDto)
                 .toList();
 
+        PaginationInfoDTO paginationInfo = PaginationInfoDTO.builder()
+                .size(result.getPageSize())
+                .page(result.getPage())
+                .totalElements(result.getTotal())
+                .totalPages(result.getTotalPages())
+                .build();
+
         return PageResponseDTO.<InvestorDTO>builder()
                 .content(content)
-                .paginationInfo(buildPageInfo(result.getTotal(), result.getPage(), result.getPageSize()))
+                .paginationInfo(paginationInfo)
                 .build();
     }
 
@@ -92,19 +105,25 @@ public class QueryResolver {
     public PageResponseDTO<InvestorAnalyticDTO> getInvestorAnalytics(
             @Argument GetInvestorAnalyticsInput input) {
 
-        PaginationInput pagination = PaginationUtils.resolvePagination(
-                input,
-                i -> ((GetInvestorAnalyticsInput) i).getPagination()
-        );
-        PageData<InvestorAnalytic> result = investorAnalyticService.getInvestorAnalytics(pagination);
+        PaginationInput pagination = input != null ? input.getPagination() : null;
+        DealFilterInput filter = input != null ? input.getFilter() : null;
+
+        PageData<InvestorAnalytic> result = investorAnalyticService.getInvestorAnalytics(filter, pagination);
 
         List<InvestorAnalyticDTO> content = result.getContent().stream()
                 .map(investorAnalyticMapper::toDto)
                 .toList();
 
+        PaginationInfoDTO paginationInfo = PaginationInfoDTO.builder()
+                .size(result.getPageSize())
+                .page(result.getPage())
+                .totalElements(result.getTotal())
+                .totalPages(result.getTotalPages())
+                .build();
+
         return PageResponseDTO.<InvestorAnalyticDTO>builder()
                 .content(content)
-                .paginationInfo(buildPageInfo(result.getTotal(), result.getPage(), result.getPageSize()))
+                .paginationInfo(paginationInfo)
                 .build();
     }
 
@@ -112,19 +131,24 @@ public class QueryResolver {
     public PageResponseDTO<IssuerDTO> getIssuers(
             @Argument GetIssuersInput input) {
 
-        PaginationInput pagination = PaginationUtils.resolvePagination(
-                input,
-                i -> ((GetIssuersInput) i).getPagination()
-        );
+        PaginationInput pagination = input != null ? input.getPagination() : null;
+
         PageData<Issuer> result = issuerService.getAllIssuers(pagination);
 
         List<IssuerDTO> content =  result.getContent().stream()
                 .map(issuerMapper::toDto)
                 .toList();
 
+        PaginationInfoDTO paginationInfo = PaginationInfoDTO.builder()
+                .size(result.getPageSize())
+                .page(result.getPage())
+                .totalElements(result.getTotal())
+                .totalPages(result.getTotalPages())
+                .build();
+
         return PageResponseDTO.<IssuerDTO>builder()
                 .content(content)
-                .paginationInfo(buildPageInfo(result.getTotal(), result.getPage(), result.getPageSize()))
+                .paginationInfo(paginationInfo)
                 .build();
     }
 
