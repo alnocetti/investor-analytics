@@ -55,7 +55,7 @@ public class QueryResolver {
     public PageResponseDTO<DealDTO> getDeals(
             @Argument GetDealsInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : null;
+        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
         DealFilterInput filter = input != null ? input.getFilter() : null;
         SortInput sort = input != null ? input.getSort() : null;
 
@@ -82,7 +82,7 @@ public class QueryResolver {
     public PageResponseDTO<InvestorDTO> getInvestors(
             @Argument GetInvestorsInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : null;
+        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
 
         PageData<Investor> result = investorService.getAllInvestors(pagination);
 
@@ -107,7 +107,7 @@ public class QueryResolver {
     public PageResponseDTO<InvestorAnalyticDTO> getInvestorAnalytics(
             @Argument GetInvestorAnalyticsInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : null;
+        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
         DealFilterInput filter = input != null ? input.getFilter() : null;
         SortInput sort = input != null ? input.getSort() : null;
 
@@ -134,7 +134,7 @@ public class QueryResolver {
     public PageResponseDTO<IssuerDTO> getIssuers(
             @Argument GetIssuersInput input) {
 
-        PaginationInput pagination = input != null ? input.getPagination() : null;
+        PaginationInput pagination = input != null ? input.getPagination() : new PaginationInput();
 
         PageData<Issuer> result = issuerService.getAllIssuers(pagination);
 

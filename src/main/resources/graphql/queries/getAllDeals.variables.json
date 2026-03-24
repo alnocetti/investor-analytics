@@ -5,11 +5,11 @@
       "size": 100
     },
     "sort": {
-      "field": "country",
-      "direction": "ASC"
+      "field": "issuer.name",
+      "direction": "DESC"
     },
     "filter": {
-      "dealId": "69c00f6471c171461fffee84",
+      // "dealId": "69c00f6471c171461fffee84",
       "sector": "Healthcare",
       "region": "Europe",
       "investorId": "69c00f6371c171461fffec5c",
