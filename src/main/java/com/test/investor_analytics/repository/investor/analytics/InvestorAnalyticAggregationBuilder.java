@@ -88,10 +88,9 @@ public class InvestorAnalyticAggregationBuilder {
         AggregationPipeline pipeline = AggregationPipeline.builder().build();
 
         // match base
-        pipeline.addIf(
-                criteria != null && !criteria.getCriteriaObject().isEmpty(),
-                Aggregation.match(criteria));
-
+        if (criteria != null) {
+            pipeline.add(Aggregation.match(criteria));
+        }
 
         // unwind
         pipeline.add(Aggregation.unwind("investorDealAnalytics"));
@@ -111,6 +110,7 @@ public class InvestorAnalyticAggregationBuilder {
         pipeline.add(
                 Aggregation.group("investorDealAnalytics.investor._id")
                         .first("investorDealAnalytics.investor").as("investor")
+                        .count().as("participation")
                         .sum("investorDealAnalytics.allocation").as("totalAllocation")
                         .sum("investorDealAnalytics.demand").as("totalDemand")
                         .avg("investorDealAnalytics.allocationRank").as("averageAllocationRank")
@@ -123,6 +123,7 @@ public class InvestorAnalyticAggregationBuilder {
                         .andExclude("_id")
                         .andInclude(
                                 "investor",
+                                "participation",
                                 "totalAllocation",
                                 "totalDemand",
                                 "averageAllocationRank",

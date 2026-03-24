@@ -54,6 +54,7 @@ type InvestorDealAnalyticPage {
 
 type InvestorAnalytic {
     investor: Investor
+    participation: Int
     totalAllocation: Float
     totalDemand: Float
     averageAllocationRank: Float

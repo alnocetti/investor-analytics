@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class InvestorAnalytic {
     private InvestorEmbedded investor;
+    private Integer participation;
     private Float totalAllocation;
     private Float totalDemand;
     private Float averageAllocationRank;

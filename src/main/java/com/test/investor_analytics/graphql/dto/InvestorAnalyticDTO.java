@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class InvestorAnalyticDTO {
     private InvestorDTO investor;
+    private Integer participation;
     private Float totalAllocation;
     private Float totalDemand;
     private Float averageAllocationRank;
