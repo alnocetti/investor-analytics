@@ -5,7 +5,6 @@ import com.test.investor_analytics.graphql.dto.input.DealFilterInput;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.query.Criteria;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,11 +52,11 @@ public class FilterUtils {
                 Criteria dateCriteria = Criteria.where("pricingDate");
 
                 if (range.getStartDate() != null) {
-                    dateCriteria.gte(LocalDate.parse(range.getStartDate()));
+                    dateCriteria.gte(range.getStartDate());
                 }
 
                 if (range.getEndDate() != null) {
-                    dateCriteria.lte(LocalDate.parse(range.getEndDate()));
+                    dateCriteria.lte(range.getEndDate());
                 }
 
                 criteriaList.add(dateCriteria);

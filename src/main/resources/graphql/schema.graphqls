@@ -84,9 +84,11 @@ input DealFilterInput {
     investorId: ID
 }
 
+scalar Date
+
 input DateRangeInput {
-    startDate: String
-    endDate: String
+    startDate: Date
+    endDate: Date
 }
 
 type PaginationInfo {
